@@ -1,17 +1,12 @@
 package com.example.wanandroid.net
 
-import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 import retrofit2.HttpException
 
 
-abstract class BaseObserver<T> : Observer<T> {
-
+abstract class BaseObserver<T> : SingleObserver<T> {
     override fun onSubscribe(d: Disposable?) {
-    }
-
-    override fun onNext(t: T) {
-        onSuccess(t)
     }
 
     override fun onError(e: Throwable?) {
@@ -31,10 +26,6 @@ abstract class BaseObserver<T> : Observer<T> {
             }
         }
     }
-
-    override fun onComplete() {}
-
-    abstract fun onSuccess(t: T)
 
     abstract fun onFailure(e: Throwable?)
 

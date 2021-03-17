@@ -3,12 +3,14 @@ package com.example.wanandroid.ui.demo
 import androidx.paging.DataSource
 import androidx.paging.ItemKeyedDataSource
 import androidx.paging.PageKeyedDataSource
+import autodispose2.autoDispose
 import com.example.wanandroid.base.BasePageViewModel
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.BaseResponse
 import com.example.wanandroid.model.PageData
 import com.example.wanandroid.net.BaseObserver
 import com.example.wanandroid.repos.NetRepository
+import java.util.concurrent.TimeUnit
 
 
 class DemoViewModel : BasePageViewModel<Article>() {
@@ -34,6 +36,8 @@ class DemoViewModel : BasePageViewModel<Article>() {
     private fun loadData(page: Int, initialCallback: PageKeyedDataSource.LoadInitialCallback<Int, Article>?,
                          callback: PageKeyedDataSource.LoadCallback<Int, Article>?) {
         netRepository.getArticles(page)
+                .delay(30000, TimeUnit.MILLISECONDS)
+                .autoDispose(this)
                 .subscribe(object : BaseObserver<BaseResponse<PageData<Article>>?>() {
                     override fun onSuccess(t: BaseResponse<PageData<Article>>?) {
                         if (initialCallback != null) {
@@ -73,6 +77,7 @@ class DemoViewModel : BasePageViewModel<Article>() {
 
     private fun loadData(page: Int, pageSize: Int, callback: ItemKeyedDataSource.LoadCallback<Article>) {
         netRepository.getArticles(page)
+                .autoDispose(this)
                 .subscribe(object : BaseObserver<BaseResponse<PageData<Article>>?>() {
                     override fun onSuccess(t: BaseResponse<PageData<Article>>?) {
                         callback.onResult(t?.data?.datas ?: emptyList())

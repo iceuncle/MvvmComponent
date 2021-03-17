@@ -2,14 +2,13 @@ package com.example.wanandroid.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.paging.PagedList.BoundaryCallback
 
 
-abstract class BasePageViewModel<T> : ViewModel {
+abstract class BasePageViewModel<T> : BaseViewModel {
 
     companion object {
         //分页size

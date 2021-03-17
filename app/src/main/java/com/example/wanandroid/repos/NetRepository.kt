@@ -5,12 +5,12 @@ import com.example.wanandroid.model.BaseResponse
 import com.example.wanandroid.model.PageData
 import com.example.wanandroid.net.NetClient
 import com.example.wanandroid.net.NetService
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
 
 class NetRepository private constructor(private var netService: NetService) {
 
-    fun getArticles(page: Int): Observable<BaseResponse<PageData<Article>>> {
+    fun getArticles(page: Int): Single<BaseResponse<PageData<Article>>> {
         return netService.getArticles(page.toString())
     }
 

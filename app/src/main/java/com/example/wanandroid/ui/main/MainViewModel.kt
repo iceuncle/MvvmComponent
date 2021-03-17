@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.main
 
-import androidx.lifecycle.ViewModel
+import com.example.wanandroid.base.BaseViewModel
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
 }
