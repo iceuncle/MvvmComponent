@@ -10,7 +10,6 @@ import com.example.wanandroid.model.BaseResponse
 import com.example.wanandroid.model.PageData
 import com.example.wanandroid.net.BaseObserver
 import com.example.wanandroid.repos.NetRepository
-import java.util.concurrent.TimeUnit
 
 
 class DemoViewModel : BasePageViewModel<Article>() {
@@ -36,7 +35,6 @@ class DemoViewModel : BasePageViewModel<Article>() {
     private fun loadData(page: Int, initialCallback: PageKeyedDataSource.LoadInitialCallback<Int, Article>?,
                          callback: PageKeyedDataSource.LoadCallback<Int, Article>?) {
         netRepository.getArticles(page)
-                .delay(30000, TimeUnit.MILLISECONDS)
                 .autoDispose(this)
                 .subscribe(object : BaseObserver<BaseResponse<PageData<Article>>?>() {
                     override fun onSuccess(t: BaseResponse<PageData<Article>>?) {

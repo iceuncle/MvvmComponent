@@ -1,5 +1,6 @@
 package com.example.wanandroid.ui.demo
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +15,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 
 class DemoFragment : BasePageFragment<Article, FragmentDashboardBinding, DemoAdapter.ViewHolder>(), OnRefreshListener {
 
+    private var mPosition = 0
+
     companion object {
-        fun newInstance() = DemoFragment()
+        fun newInstance(position: Int) = DemoFragment().apply {
+            arguments = Bundle().apply {
+                putInt("position", position)
+            }
+        }
     }
 
     private val mViewModel: DemoViewModel by lazy { ViewModelProvider(this).get(DemoViewModel::class.java) }
@@ -29,7 +36,16 @@ class DemoFragment : BasePageFragment<Article, FragmentDashboardBinding, DemoAda
     override fun provideEmptyView() = mBinding.emptyView
     override fun provideAdapter(): PagedListAdapter<Article, out RecyclerView.ViewHolder> = mAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mPosition = arguments?.getInt("position") ?: 0
+        println("mPosition+  onCreate $mPosition....")
+    }
+
     override fun initDetailView() {
+        mPosition = arguments?.getInt("position") ?: 0
+        println("mPosition+  $mPosition")
+
         mBinding.refreshLayout.setEnableRefresh(true)
         mBinding.refreshLayout.setEnableLoadMore(false)
         mBinding.refreshLayout.setOnRefreshListener(this)

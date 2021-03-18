@@ -10,11 +10,12 @@ import java.util.concurrent.TimeUnit
 
 
 class NetClient {
-    private val CONNECT_TIME_OUT = 5L
-    private val READ_TIME_OUT = 5L
-    private val WRITE_TIME_OUT = 5L
 
     companion object {
+        const val CONNECT_TIME_OUT = 5L
+        const val READ_TIME_OUT = 5L
+        const val WRITE_TIME_OUT = 5L
+
         @Volatile
         var instance: NetClient? = null
             get() {
