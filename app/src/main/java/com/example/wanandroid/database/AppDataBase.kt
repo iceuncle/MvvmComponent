@@ -17,7 +17,7 @@ abstract class AppDataBase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDataBase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext,
+                val instance = Room.databaseBuilder(context,
                         AppDataBase::class.java, "app_database")
 //                        //允许在主线程进行查询
 //                        .allowMainThreadQueries()

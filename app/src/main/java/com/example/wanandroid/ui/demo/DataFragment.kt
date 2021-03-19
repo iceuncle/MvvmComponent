@@ -1,21 +1,18 @@
 package com.example.wanandroid.ui.demo
 
 import androidx.fragment.app.viewModels
-import com.example.wanandroid.MyApplication
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentDataBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * 示例Demo
+ */
+@AndroidEntryPoint
 class DataFragment : BaseFragment<FragmentDataBinding>() {
 
-    companion object {
-        fun newInstance() = DataFragment()
-    }
-
-    private val mViewModel: DataViewModel by viewModels {
-        DataViewModelFactory((context?.applicationContext as MyApplication).databaseRepo)
-    }
+    private val mViewModel: DataViewModel by viewModels()
 
     override val layoutId: Int get() = R.layout.fragment_data
 
@@ -31,6 +28,7 @@ class DataFragment : BaseFragment<FragmentDataBinding>() {
             }
             mBinding.contentTv.text = str
         })
+
     }
 
 

@@ -4,9 +4,10 @@ import androidx.annotation.WorkerThread
 import com.example.wanandroid.database.SearchKeyDao
 import com.example.wanandroid.database.entity.SearchKey
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 
-class DatabaseRepository(private val searchKeyDao: SearchKeyDao) {
+class DatabaseRepository @Inject constructor(private val searchKeyDao: SearchKeyDao) {
 
     val searchKeys: Flow<List<SearchKey>> = searchKeyDao.getSearchKeys()
 

@@ -10,11 +10,12 @@ import com.example.wanandroid.model.BaseResponse
 import com.example.wanandroid.model.PageData
 import com.example.wanandroid.net.BaseObserver
 import com.example.wanandroid.repos.NetRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
+@HiltViewModel
+class DemoViewModel @Inject constructor(private val netRepo: NetRepository) : BasePageViewModel<Article>() {
 
-class DemoViewModel : BasePageViewModel<Article>() {
-
-    private val netRepository = NetRepository.instance
 
     override fun createDataSource(): DataSource<Int, Article> = PageDataSource()
 
@@ -34,7 +35,7 @@ class DemoViewModel : BasePageViewModel<Article>() {
 
     private fun loadData(page: Int, initialCallback: PageKeyedDataSource.LoadInitialCallback<Int, Article>?,
                          callback: PageKeyedDataSource.LoadCallback<Int, Article>?) {
-        netRepository.getArticles(page)
+        netRepo.getArticles(page)
                 .autoDispose(this)
                 .subscribe(object : BaseObserver<BaseResponse<PageData<Article>>?>() {
                     override fun onSuccess(t: BaseResponse<PageData<Article>>?) {
@@ -74,7 +75,7 @@ class DemoViewModel : BasePageViewModel<Article>() {
     }
 
     private fun loadData(page: Int, pageSize: Int, callback: ItemKeyedDataSource.LoadCallback<Article>) {
-        netRepository.getArticles(page)
+        netRepo.getArticles(page)
                 .autoDispose(this)
                 .subscribe(object : BaseObserver<BaseResponse<PageData<Article>>?>() {
                     override fun onSuccess(t: BaseResponse<PageData<Article>>?) {

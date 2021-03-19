@@ -1,47 +1,31 @@
 package com.example.wanandroid
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.databinding.MainActivityBinding
-import com.example.wanandroid.ui.demo.DataFragment
-import com.example.wanandroid.ui.demo.DemoFragment
+import com.example.wanandroid.utils.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<MainActivityBinding>() {
 
 
     override val layoutId: Int get() = R.layout.main_activity
 
     override fun initView() {
+        setupBottomNavigationBar()
+    }
 
-        mBinding.viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getCount(): Int = 3
-            override fun getItem(position: Int): Fragment {
-                return when (position) {
-                    2 -> DataFragment.newInstance()
-                    else -> DemoFragment.newInstance(position)
-                }
-            }
-        }
-
-        val bottomNavIds = arrayListOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-        mBinding.navView.setOnNavigationItemSelectedListener { item ->
-            mBinding.viewPager.currentItem = bottomNavIds.indexOf(item.itemId)
-            true
-        }
-        mBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                mBinding.navView.selectedItemId = bottomNavIds[position]
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
+    private fun setupBottomNavigationBar() {
+        val navGraphIds = listOf(R.navigation.home, R.navigation.dashboard, R.navigation.mine)
+        val controller = mBinding.bottomNav.setupWithNavController(
+                navGraphIds = navGraphIds,
+                fragmentManager = supportFragmentManager,
+                containerId = R.id.nav_host_container,
+                intent = intent
+        )
+        controller.observe(this, { navController ->
+            setupActionBarWithNavController(navController)
         })
-
-
     }
 }

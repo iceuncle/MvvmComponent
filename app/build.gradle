@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id "kotlin-android-extensions"
 }
 
 android {
@@ -50,60 +51,69 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-    implementation "androidx.activity:activity-ktx:$rootProject.activityKtxVersion"
-    implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentKtxVersion"
-    implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.activity:activity-ktx:$activityKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
 
     //kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    //multidex
+    implementation "com.android.support:multidex:$mutidexVersion"
 
     //UI
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     //testing
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    //2.32-alpha版本后无需集成
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
+//    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
 
     //retrofit okhttp
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2ConverterGson"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3LoggingInterceptor"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGson"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptor"
 
     //rxjava
-    implementation "io.reactivex.rxjava3:rxjava:$rootProject.rxjava3Version"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$rootProject.retrofit2AdapterRxjava3"
+    implementation "io.reactivex.rxjava3:rxjava:$rxjava3Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit2AdapterRxjava3"
 
     //autodispose
-    implementation "com.uber.autodispose2:autodispose:$rootProject.autodisposeVersion"
-    implementation "com.uber.autodispose2:autodispose-lifecycle:$rootProject.autodisposeVersion"
+    implementation "com.uber.autodispose2:autodispose:$autodisposeVersion"
+    implementation "com.uber.autodispose2:autodispose-lifecycle:$autodisposeVersion"
 
     //页面刷新组件
-    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartRefreshVersion"
-    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartRefreshVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$smartRefreshVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$smartRefreshVersion"
 
     //lifecycle
-//    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
 
     //paging分页组件
-    implementation "androidx.paging:paging-runtime-ktx:$rootProject.pagingVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     //room数据库
-    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
-    //multidex
-    implementation "com.android.support:multidex:$rootProject.mutidexVersion"
+    //navigation
+    implementation "androidx.navigation:navigation-runtime-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
 }
