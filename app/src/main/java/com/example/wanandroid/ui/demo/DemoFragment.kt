@@ -1,6 +1,5 @@
 package com.example.wanandroid.ui.demo
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -8,15 +7,13 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BasePageFragment
 import com.example.wanandroid.databinding.FragmentDashboardBinding
 import com.example.wanandroid.model.Article
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 示例Demo
  */
 @AndroidEntryPoint
-class DemoFragment : BasePageFragment<Article, FragmentDashboardBinding, DemoAdapter.ViewHolder>(), OnRefreshListener {
+class DemoFragment : BasePageFragment<Article, FragmentDashboardBinding, DemoAdapter.ViewHolder>() {
 
     private var mPosition = 0
 
@@ -31,25 +28,16 @@ class DemoFragment : BasePageFragment<Article, FragmentDashboardBinding, DemoAda
     override fun provideEmptyView() = mBinding.emptyView
     override fun provideAdapter(): PagedListAdapter<Article, out RecyclerView.ViewHolder> = mAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mPosition = arguments?.getInt("position") ?: 0
-        println("mPosition+  onCreate $mPosition....")
-    }
-
     override fun initDetailView() {
         mPosition = arguments?.getInt("position") ?: 0
-        println("mPosition+  $mPosition")
-
-        mBinding.refreshLayout.setEnableRefresh(true)
-        mBinding.refreshLayout.setEnableLoadMore(false)
-        mBinding.refreshLayout.setOnRefreshListener(this)
 
         mBinding.recyclerView.adapter = mAdapter
+
+        mBinding.refreshLayout.setColorSchemeResources(R.color.purple_200)
+        mBinding.refreshLayout.setOnRefreshListener {
+            mViewModel.dataSource?.invalidate()
+        }
     }
 
-    override fun onRefresh(refreshLayout: RefreshLayout) {
-        mViewModel.dataSource?.invalidate()
-    }
 
 }

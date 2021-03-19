@@ -5,15 +5,14 @@ import androidx.databinding.ViewDataBinding
 import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 abstract class BasePageFragment<T, VB : ViewDataBinding, VH : RecyclerView.ViewHolder> : BaseFragment<VB>() {
 
     protected val mPageViewModel: BasePageViewModel<T> by lazy { providePageViewModel() }
     protected val mRecyclerView: RecyclerView by lazy { provideRecyclerView() }
-    protected val mRefreshLayout: SmartRefreshLayout by lazy { provideRefreshLayout() }
+    protected val mRefreshLayout: SwipeRefreshLayout by lazy { provideRefreshLayout() }
     protected val mEmptyView: View by lazy { provideEmptyView() }
-    //mPageAdapter 不能使用lazy加载，不然在submitList回调时，mPageAdapter还未初始化
     protected val mPageAdapter: PagedListAdapter<T, out RecyclerView.ViewHolder> by lazy { provideAdapter() }
 
 
@@ -28,7 +27,7 @@ abstract class BasePageFragment<T, VB : ViewDataBinding, VH : RecyclerView.ViewH
 
     protected abstract fun providePageViewModel(): BasePageViewModel<T>
     protected abstract fun provideRecyclerView(): RecyclerView
-    protected abstract fun provideRefreshLayout(): SmartRefreshLayout
+    protected abstract fun provideRefreshLayout(): SwipeRefreshLayout
     protected abstract fun provideEmptyView(): View
     protected abstract fun provideAdapter(): PagedListAdapter<T, out RecyclerView.ViewHolder>
     protected abstract fun initDetailView()
@@ -38,12 +37,7 @@ abstract class BasePageFragment<T, VB : ViewDataBinding, VH : RecyclerView.ViewH
     }
 
     private fun finishRefresh(hasData: Boolean) {
-        val state = mRefreshLayout.state
-        if (state.isFooter && state.isOpening) {
-            mRefreshLayout.finishLoadMore()
-        } else if (state.isHeader && state.isOpening) {
-            mRefreshLayout.finishRefresh()
-        }
+        mRefreshLayout.isRefreshing = false
         val currentList: PagedList<T>? = mPageAdapter.currentList
         val isHasData = hasData || currentList?.size ?: 0 > 0
         mEmptyView.visibility = if (isHasData) View.GONE else View.VISIBLE

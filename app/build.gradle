@@ -67,6 +67,9 @@ dependencies {
     //UI
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$refreshLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
 
     //testing
     testImplementation "junit:junit:$junitVersion"
@@ -92,10 +95,6 @@ dependencies {
     //autodispose
     implementation "com.uber.autodispose2:autodispose:$autodisposeVersion"
     implementation "com.uber.autodispose2:autodispose-lifecycle:$autodisposeVersion"
-
-    //页面刷新组件
-    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$smartRefreshVersion"
-    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$smartRefreshVersion"
 
     //lifecycle
 //    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
