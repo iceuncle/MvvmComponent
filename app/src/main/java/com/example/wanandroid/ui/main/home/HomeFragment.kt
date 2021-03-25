@@ -1,43 +1,44 @@
-package com.example.wanandroid.ui.demo
+package com.example.wanandroid.ui.main.home
 
 import androidx.fragment.app.viewModels
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BasePageFragment
-import com.example.wanandroid.databinding.FragmentDemoBinding
+import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.model.Article
+import com.example.wanandroid.model.ArticleBean
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * 示例Demo
- */
 @AndroidEntryPoint
-class DemoFragment : BasePageFragment<Article, FragmentDemoBinding>() {
+class HomeFragment : BasePageFragment<ArticleBean, FragmentHomeBinding>() {
 
-    private var mPosition = 0
+    override val layoutId = R.layout.fragment_home
 
-    private val mViewModel: DemoViewModel by viewModels()
-    private val mAdapter: DemoAdapter<Article, DemoAdapter.ViewHolder> by lazy { DemoAdapter() }
+    private val mViewModel: HomeViewModel by viewModels()
+    private val mAdapter: HomeAdapter<Article, HomeAdapter.ViewHolder> by lazy { HomeAdapter() }
 
-    override val layoutId: Int get() = R.layout.fragment_demo
 
     override fun providePageViewModel() = mViewModel
+
     override fun provideRecyclerView() = mBinding.recyclerView
+
     override fun provideRefreshLayout() = mBinding.refreshLayout
+
     override fun provideEmptyView() = mBinding.include.emptyView
+
     override fun provideAdapter() = mAdapter
 
-    override fun initDetailView() {
-        mPosition = arguments?.getInt("position") ?: 0
 
+    override fun initDetailView() {
         mBinding.recyclerView.adapter = mAdapter
 
         mBinding.refreshLayout.setColorSchemeResources(R.color.purple_200)
         mBinding.refreshLayout.setOnRefreshListener {
             mViewModel.dataSource?.invalidate()
         }
-    }
 
+        mAdapter.ivCollectClick = {
+            it.collect = !it.collect
+        }
+    }
 
 }

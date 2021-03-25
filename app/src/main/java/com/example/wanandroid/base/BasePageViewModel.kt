@@ -2,10 +2,10 @@ package com.example.wanandroid.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.paging.*
 import androidx.paging.PagedList.BoundaryCallback
+import com.example.wanandroid.model.Article
+import com.example.wanandroid.model.ArticleBean
 
 
 abstract class BasePageViewModel<T> : BaseViewModel {
@@ -20,6 +20,8 @@ abstract class BasePageViewModel<T> : BaseViewModel {
         //第一次加载的key
         const val INITIAL_LOAD_KEY = 0
     }
+
+    var isFeeds = false
 
     var dataSource: DataSource<Int, T>? = null
 
@@ -66,10 +68,39 @@ abstract class BasePageViewModel<T> : BaseViewModel {
         }
     }
 
-    abstract fun createDataSource(): DataSource<Int, T>
+    private fun createDataSource(): DataSource<Int, T> = PageDataSource()
+
 
     fun postBoundaryPageData(value: Boolean) {
         boundaryPageData.postValue(value)
     }
+
+    inner class PageDataSource : PageKeyedDataSource<Int, T>() {
+        override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
+            loadData(0, callback, null)
+        }
+
+        override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
+        }
+
+        override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
+            loadData(params.key + 1, null, callback)
+        }
+    }
+
+    abstract fun loadData(page: Int, callback: (data: List<T>) -> Unit)
+
+    fun loadData(page: Int, initialCallback: PageKeyedDataSource.LoadInitialCallback<Int, T>?,
+                 callback: PageKeyedDataSource.LoadCallback<Int, T>?) {
+        loadData(page) {
+            if (initialCallback != null) {
+                initialCallback.onResult(it, -1, 0)
+            } else {
+                callback?.onResult(it, page)
+            }
+        }
+
+    }
+
 
 }

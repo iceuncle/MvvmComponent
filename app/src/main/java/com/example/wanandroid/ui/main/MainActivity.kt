@@ -1,6 +1,7 @@
-package com.example.wanandroid
+package com.example.wanandroid.ui.main
 
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.databinding.MainActivityBinding
 import com.example.wanandroid.utils.setupWithNavController
@@ -17,7 +18,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     }
 
     private fun setupBottomNavigationBar() {
-        val navGraphIds = listOf(R.navigation.home, R.navigation.dashboard, R.navigation.mine)
+        val navGraphIds = listOf(R.navigation.home, R.navigation.project, R.navigation.mine)
         val controller = mBinding.bottomNav.setupWithNavController(
                 navGraphIds = navGraphIds,
                 fragmentManager = supportFragmentManager,

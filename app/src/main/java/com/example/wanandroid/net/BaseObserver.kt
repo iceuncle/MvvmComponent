@@ -1,5 +1,6 @@
 package com.example.wanandroid.net
 
+import com.example.wanandroid.utils.BusUtil
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 import retrofit2.HttpException
@@ -27,7 +28,9 @@ abstract class BaseObserver<T> : SingleObserver<T> {
         }
     }
 
-    abstract fun onFailure(e: Throwable?)
+    open fun onFailure(e: Throwable?) {
+        BusUtil.failMessage.postValue(e?.message ?: "")
+    }
 
     private fun isHttpError(msg: String): Boolean {
         val errorArray = arrayOf(

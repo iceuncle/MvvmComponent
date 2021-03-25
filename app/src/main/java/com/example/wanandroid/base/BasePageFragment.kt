@@ -7,7 +7,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-abstract class BasePageFragment<T, VB : ViewDataBinding, VH : RecyclerView.ViewHolder> : BaseFragment<VB>() {
+abstract class BasePageFragment<T, VB : ViewDataBinding> : BaseFragment<VB>() {
 
     protected val mPageViewModel: BasePageViewModel<T> by lazy { providePageViewModel() }
     protected val mRecyclerView: RecyclerView by lazy { provideRecyclerView() }
