@@ -4,6 +4,12 @@
     <string name="title_dashboard">项目</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="tv_share">&#160;分享&#160;</string>
     <string name="tv_author">&#160;作者&#160;</string>
+
+    <string name="my_like">我喜欢的</string>
+    <string name="my_about">关于我们</string>
 </resources>
