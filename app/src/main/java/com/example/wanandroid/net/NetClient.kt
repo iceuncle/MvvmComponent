@@ -31,7 +31,7 @@ class NetClient {
             private set
 
         inline fun <reified T> create(): T {
-            return create("https://www.wanandroid.com")
+            return create(Constant.REQUEST_BASE_URL)
         }
 
         inline fun <reified T> create(baseUrl: String): T {

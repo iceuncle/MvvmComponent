@@ -1,12 +1,13 @@
 package com.example.wanandroid.ui.main
 
-import android.widget.Toast
+import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.databinding.MainActivityBinding
+import com.example.wanandroid.ui.login.LoginActivity
 import com.example.wanandroid.utils.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,10 +54,10 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             NavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.nav_like -> {
-
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }
                     R.id.nav_about -> {
-
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }
                 }
                 mBinding.drawerLayout.closeDrawer(GravityCompat.START)

@@ -8,5 +8,7 @@ object BusUtil {
     @JvmStatic
     var failMessage = MutableLiveData<String>()
 
+    @JvmStatic
+    var showProgress = MutableLiveData<Boolean>()
 }
 

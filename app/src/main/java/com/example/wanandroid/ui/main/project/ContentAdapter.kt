@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.main.dashboard
+package com.example.wanandroid.ui.main.project
 
 import android.view.LayoutInflater
 import android.view.View

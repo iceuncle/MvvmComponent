@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.main.dashboard
+package com.example.wanandroid.ui.main.project
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels

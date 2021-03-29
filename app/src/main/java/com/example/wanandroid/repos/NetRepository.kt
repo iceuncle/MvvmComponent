@@ -15,4 +15,9 @@ class NetRepository @Inject constructor(private var netService: NetService) {
     fun getProjectTree() = netService.getProjectTree()
 
     fun getProjectListByCid(page: Int, cid: Int) = netService.getProjectListByCid(page, cid)
+
+    fun register(username: String, password: String) = netService.register(username, password, password)
+
+    fun login(username: String, password: String) = netService.login(username, password)
+
 }

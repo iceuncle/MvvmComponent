@@ -36,3 +36,5 @@ data class ArticleBean(
 }
 
 data class ProjectTree(val id: Int, var name: String)
+
+data class User(val nickname: String, val username: String, val token: String, val id: Int)

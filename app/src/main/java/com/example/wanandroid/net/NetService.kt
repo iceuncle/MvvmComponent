@@ -2,9 +2,7 @@ package com.example.wanandroid.net
 
 import com.example.wanandroid.model.*
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface NetService {
@@ -22,5 +20,14 @@ interface NetService {
 
     @GET("project/list/{page}/json")
     fun getProjectListByCid(@Path("page") page: Int, @Query("cid") cid: Int): Single<BaseResponse<PageData<ArticleBean>>>
+
+    @FormUrlEncoded
+    @POST("/user/register")
+    fun register(@Field("username") username: String, @Field("password") password: String,
+                 @Field("repassword") repassword: String): Single<BaseResponse<User?>>
+
+    @FormUrlEncoded
+    @POST("/user/login")
+    fun login(@Field("username") username: String, @Field("password") password: String): Single<BaseResponse<User?>>
 
 }

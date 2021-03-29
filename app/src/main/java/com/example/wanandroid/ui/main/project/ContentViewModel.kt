@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.main.dashboard
+package com.example.wanandroid.ui.main.project
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

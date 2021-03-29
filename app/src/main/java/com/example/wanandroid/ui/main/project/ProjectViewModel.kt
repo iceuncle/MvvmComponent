@@ -1,7 +1,6 @@
-package com.example.wanandroid.ui.main.dashboard
+package com.example.wanandroid.ui.main.project
 
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Database
 import autodispose2.autoDispose
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.model.BaseResponse

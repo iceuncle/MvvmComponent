@@ -12,4 +12,11 @@
 
     <string name="my_like">我喜欢的</string>
     <string name="my_about">关于我们</string>
+
+    <string name="prompt_username">用户名</string>
+    <string name="prompt_password">密码</string>
+    <string name="prompt_password_confirm">确认密码(注册需填写)</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="login_register">注册</string>
+    <string name="login_login">登录</string>
 </resources>
