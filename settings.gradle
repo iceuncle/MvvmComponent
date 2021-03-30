@@ -1,2 +1,7 @@
+include ':module_demo'
+include ':module_login'
+include ':module_project'
+include ':module_main'
+include ':module_base'
 include ':app'
 rootProject.name = "WanAndroid"

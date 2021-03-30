@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+apply from: '../base.build.gradle'
+
+android {
+    resourcePrefix "base_"
+}
+
+dependencies {
+
+    api "androidx.appcompat:appcompat:$appCompatVersion"
+    api "androidx.activity:activity-ktx:$activityKtxVersion"
+    api "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+    api "androidx.core:core-ktx:$coreKtxVersion"
+
+    //kotlin components
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    //multidex
+    api "com.android.support:multidex:$mutidexVersion"
+
+    //UI
+    api "com.google.android.material:material:$materialVersion"
+    api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$refreshLayoutVersion"
+    api "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    api "androidx.viewpager2:viewpager2:$viewpagerVersion"
+
+    //hilt
+    api "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    //2.32-alpha版本后无需集成
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
+//    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
+
+    //retrofit okhttp
+    api "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGson"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptor"
+
+    //rxjava
+    api "io.reactivex.rxjava3:rxjava:$rxjava3Version"
+    api "com.squareup.retrofit2:adapter-rxjava3:$retrofit2AdapterRxjava3"
+
+    //autodispose
+    api "com.uber.autodispose2:autodispose:$autodisposeVersion"
+    api "com.uber.autodispose2:autodispose-lifecycle:$autodisposeVersion"
+
+    //lifecycle
+//    api "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
+    //paging分页组件
+    api "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
+    //room数据库
+    api "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //navigation
+    api "androidx.navigation:navigation-runtime-ktx:$navigationVersion"
+    api "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    api "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    //glide
+    api "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //aRouter
+    api "com.alibaba:arouter-api:$arouterVersion"
+    kapt "com.alibaba:arouter-compiler:$arouterVersion"
+}

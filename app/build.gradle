@@ -1,122 +1,15 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
-    id "kotlin-android-extensions"
-}
+apply plugin: 'com.android.application'
+apply from: '../base.build.gradle'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
-    defaultConfig {
-        applicationId "com.example.wanandroid"
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        debug {
-            debuggable true
-            multiDexEnabled true
-        }
-        release {
-            minifyEnabled false
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    buildFeatures {
-        dataBinding true
-    }
+    resourcePrefix "app_"
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.activity:activity-ktx:$activityKtxVersion"
-    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
-
-    //kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
-
-    //multidex
-    implementation "com.android.support:multidex:$mutidexVersion"
-
-    //UI
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$refreshLayoutVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-    implementation "androidx.viewpager2:viewpager2:$viewpagerVersion"
-
-    //testing
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
-    //hilt
+    implementation project(path: ':module_main')
+    implementation project(path: ':module_project')
+    implementation project(path: ':module_demo')
+    implementation project(path: ':module_login')
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-    //2.32-alpha版本后无需集成
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
-//    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
-
-    //retrofit okhttp
-    implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGson"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptor"
-
-    //rxjava
-    implementation "io.reactivex.rxjava3:rxjava:$rxjava3Version"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit2AdapterRxjava3"
-
-    //autodispose
-    implementation "com.uber.autodispose2:autodispose:$autodisposeVersion"
-    implementation "com.uber.autodispose2:autodispose-lifecycle:$autodisposeVersion"
-
-    //lifecycle
-//    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-
-    //paging分页组件
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
-
-    //room数据库
-    implementation "androidx.room:room-ktx:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-
-    //navigation
-    implementation "androidx.navigation:navigation-runtime-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
-    //glide
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    kapt "com.github.bumptech.glide:compiler:$glideVersion"
-
 }

@@ -1,17 +1,7 @@
 package com.example.wanandroid
 
-import androidx.multidex.MultiDexApplication
+import com.example.module_base.BaseApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MyApplication : MultiDexApplication() {
-    companion object {
-        lateinit var instance: MyApplication
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }
-}
-
+class MyApplication : BaseApplication()
