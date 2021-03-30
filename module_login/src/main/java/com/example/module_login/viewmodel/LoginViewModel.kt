@@ -5,10 +5,10 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import autodispose2.autoDispose
+import com.example.module_base.base.BaseObserver
 import com.example.module_base.base.BaseViewModel
 import com.example.module_base.model.BaseResponse
 import com.example.module_base.model.User
-import com.example.module_base.net.BaseObserver
 import com.example.module_base.repos.NetRepository
 import com.example.module_base.utils.BusUtil
 import com.example.module_base.utils.showProgress

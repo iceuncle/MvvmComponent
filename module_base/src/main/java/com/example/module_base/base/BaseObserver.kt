@@ -1,4 +1,4 @@
-package com.example.module_base.net
+package com.example.module_base.base
 
 import com.example.module_base.utils.BusUtil
 import io.reactivex.rxjava3.core.SingleObserver

@@ -6,6 +6,7 @@ android {
 }
 
 dependencies {
+    api project(path: ':lib_net')
 
     api "androidx.appcompat:appcompat:$appCompatVersion"
     api "androidx.activity:activity-ktx:$activityKtxVersion"
@@ -33,11 +34,6 @@ dependencies {
     //2.32-alpha版本后无需集成
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
 //    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
-
-    //retrofit okhttp
-    api "com.squareup.retrofit2:retrofit:$retrofit2Version"
-    api "com.squareup.retrofit2:converter-gson:$retrofit2ConverterGson"
-    api "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingInterceptor"
 
     //rxjava
     api "io.reactivex.rxjava3:rxjava:$rxjava3Version"
@@ -73,4 +69,5 @@ dependencies {
     //aRouter
     api "com.alibaba:arouter-api:$arouterVersion"
     kapt "com.alibaba:arouter-compiler:$arouterVersion"
+
 }

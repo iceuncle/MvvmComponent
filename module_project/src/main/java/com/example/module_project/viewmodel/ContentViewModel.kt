@@ -3,9 +3,9 @@ package com.example.module_project.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import autodispose2.autoDispose
+import com.example.module_base.base.BaseObserver
 import com.example.module_base.base.BasePageViewModel
 import com.example.module_base.model.ArticleBean
-import com.example.module_base.net.BaseObserver
 import com.example.module_base.repos.NetRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

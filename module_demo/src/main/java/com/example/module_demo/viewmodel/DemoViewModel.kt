@@ -2,11 +2,11 @@ package com.example.module_demo.viewmodel
 
 import androidx.paging.ItemKeyedDataSource
 import autodispose2.autoDispose
+import com.example.module_base.base.BaseObserver
 import com.example.module_base.base.BasePageViewModel
 import com.example.module_base.model.Article
 import com.example.module_base.model.BaseResponse
 import com.example.module_base.model.PageData
-import com.example.module_base.net.BaseObserver
 import com.example.module_base.repos.NetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

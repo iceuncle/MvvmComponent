@@ -1,4 +1,4 @@
-package com.example.module_base.net
+package com.example.module_base.repos
 
 import com.example.module_base.model.*
 import io.reactivex.rxjava3.core.Single

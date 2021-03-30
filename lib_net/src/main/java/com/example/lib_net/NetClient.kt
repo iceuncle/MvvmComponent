@@ -1,6 +1,5 @@
-package com.example.module_base.net
+package com.example.lib_net
 
-import com.example.module_base.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,10 +28,6 @@ class NetClient {
                 return field
             }
             private set
-
-        inline fun <reified T> create(): T {
-            return create(Constant.REQUEST_BASE_URL)
-        }
 
         inline fun <reified T> create(baseUrl: String): T {
             return instance!!.getRetrofit(baseUrl).create(T::class.java)
